@@ -1,0 +1,7 @@
+在class宣告前面可以加上修飾子作為修飾類別的用途
+
+所謂封裝(Encapsulation),是指class A的設計者可以指定其他的class能否存取A的某個member。Java定義了四種存取範圍:
+private:只有A自己才可以存取, 使用keyword private
+package:只有和A同一個package的class才可以存取, 沒有相對應的keyword
+protected:只有同一個package或是A的子類別才可以存取, 使用keyword protected
+public:所有的class都可以存取, 使用keyword public
