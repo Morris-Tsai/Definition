@@ -1,3 +1,4 @@
+p228
 覆寫(overriding):寫一個與父類別相同名稱的函數可覆蓋繼承過來的函數的用法
 ex:
 public class Animal{
