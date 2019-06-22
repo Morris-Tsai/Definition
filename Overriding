@@ -1,0 +1,21 @@
+覆寫(overriding):寫一個與父類別相同名稱的函數可覆蓋繼承過來的函數的用法
+ex:
+public class Animal{
+public void eat(){
+         System.out.println("Generic Animal Eating Generically");
+ }
+} 
+class Horse extends Animal{
+public void eat(){
+         System.out.println("Horse eating hay,oats,and horse treats");
+ }
+}
+
+覆寫函式的規則如下
+1.覆寫函式所宣告的參數必須與原函式相同，假如不一樣，就變成了多載(overloading)
+2.覆寫函式的回傳值型態必須與原函式的回傳值型態一樣，或是它的子形態
+3.不可覆寫(override)標示為final或static的函式
+  final 型態  變數<=>常數
+  final 函數  <=>不可覆寫
+  final class <=>不可繼承
+  
