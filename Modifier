@@ -1,3 +1,4 @@
+p257
 在class宣告前面可以加上修飾子作為修飾類別的用途
 
 所謂封裝(Encapsulation),是指class A的設計者可以指定其他的class能否存取A的某個member。Java定義了四種存取範圍:
