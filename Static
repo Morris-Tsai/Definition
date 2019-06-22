@@ -1,0 +1,22 @@
+p271
+靜態成員:在java中，程式一開始時靜態成員(包含資料與函數成員)就佔有記憶體空間
+例:
+static int a;
+static void print(){}
+呼叫方式:
+類別名稱.靜態成員名稱
+
+
+class Frog{
+  static int frogCount=0;
+  public Frog(){
+  frogCount+=1;
+}
+public static void main(String[] args) {
+		new Frog();
+    new Frog();
+    new Frog();
+    System.out.println("Frog count is now"+frogCount );//或Frog.frogCount
+	}
+}
+Answer ----> Frog count is now 3
