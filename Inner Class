@@ -1,0 +1,12 @@
+一般型inner class
+先有outer物件，才能建立inner物件
+
+函數型inner class
+宣告在函數內的inner class，只給函數使用
+
+匿名型inner class:沒有名稱的inner class
+1.是一種縮寫用法
+2.沒有名稱所以無法重複使用，只能用一次
+
+靜態型inner class
+可直接產生static inner class物件，不需要有outer class物件
