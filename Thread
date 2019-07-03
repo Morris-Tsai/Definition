@@ -1,0 +1,143 @@
+p422
+處理(Process):執行中的程式
+執行緒:羽量級的處理，可由處理在執行中呼叫後產生，形成一個獨立執行的process
+因此在記憶體中我們會看到一個process呼叫thread後共有兩個process在執行
+process可呼叫產生多個threads
+
+
+執行緒的函式
+1.start()
+2.yield()
+3.sleep()
+4.run()
+
+
+執行緒一定從函式run()開始
+public void run(){
+   //your job code goes here
+}
+
+
+定義實體化執行緒的方式
+1.繼承java.lang.Thread類別
+2.實作Runnable介面
+
+
+繼承Thread類別
+1.繼承java.lang.Thread類別
+2.覆寫run()函式
+範例
+class MyThread extends Thread{
+public void run(){
+   System.out.println();
+}
+
+
+多載run()函式
+class MyThread extends Thread{
+public void run(){
+  System.out.println("A");
+public void run(String s){
+  System.out.println("String in run is"+s);
+  
+  
+實作java.lang.Runnable介面
+class MyRunnable implements Runnable{
+  public void run(){
+     System.out.println("");
+  }   
+}
+產生執行緒的實體
+繼承Thread類別
+MyThread t =new MyThread()
+產生Runnable實體
+MyRunnable r = new MyRunnable();
+建立java.lang.Thread實體
+Thread t =new Thread(r);
+public class TestThreads{
+  public static void main(String[] args){
+    MyRunnable r = new MyRunnable();
+    Thread foo = new Thread(r);
+    Thread bar = new Thread(r);
+    Thread bat = new Thread(r);
+  }  
+}
+
+
+Thread類別本身實作Runnable
+Thread t = new Thread(new MyRunnable());
+你只需要一個Runnable
+建立另外一個Thread
+
+
+Thread的建構子
+Thread()
+Thread(Runnable target)
+Thread(Runnable target,String name)
+Thread(String name)
+
+
+啟動執行緒t.start();
+1.一個新的運行中的執行緒被啟動
+2.執行緒的狀態從新的變成可執行的
+3.當執行緒有執行的機會，它的目標RUN()函式會開始執行
+
+
+啟動執行緒
+class FooRunnable implements Runnable{
+  public void run(){
+    for(int x=1; x<6; x++){
+     System.out.println("");
+    } 
+  }
+}
+public class TestThreads{
+  public static void main(String[] args){
+    FooRunnable r = new FooRunnable();
+    Thread t = new Thread(r);
+    t.start();
+  }  
+}
+
+Run()剛好只是執行緒開始執行的地方
+下列程式碼不會啟動一個新的執行緒
+Runnable r = new Runnable();
+r.run();
+
+
+產生一個執行緒實體，並給她一個名字，然後run()函式會印出這個名字
+class NameRunnable implements Runnable{
+  public void run(){
+    System.out.println("NameRunnable running");
+    System.out.println("Run by"+Thread.currentThread().getName());
+  }  
+}
+public class NameThread{
+  public static void main(String[] args){
+    NameRunnable nr = new NameRunnable();
+    Thread t =new Thread(nr);
+    t.setName("morris");
+    t.start();
+ }
+}
+執行緒在run()函式完成後就結束它的任務
+一個執行緒被啟動後就不可再次被啟動
+
+
+
+
+結論
+兩種產生執行緒物件的方法:
+一:
+class MyThread extends Thread{
+  public void run(){}
+}
+Thread t = new MyThread();
+t.start();
+二:
+class MyRunnable implements Runnable{
+  public void run(){}
+}
+MyRunnable r = new MyRunnable();
+Thread t1 =new Thread(r);
+t1.start();
