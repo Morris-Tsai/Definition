@@ -1,0 +1,29 @@
+p474
+Socket連線的建立代表兩台機器之間存有對方的資訊，包含網路位址與TCP的port號
+Socket socket = new Socket("127.0.0.1",5000);
+
+讀取socket
+操作步驟
+1.建立對伺服器的Socket的連線
+Socket socket = new Socket("127.0.0.1",5000);
+2.建立聯結到Soket上低接輸入串流的InputStreamReader
+InputStreamReader stream = new InputStreamReader(socket.getInputStream());
+3.建立BufferedReader reader =new BufferedReader(stream);
+String message =reader.readLine();
+
+對socket寫入資料
+操作步驟
+1.對伺服器的Socket的連線
+2.建立連結到Socket上PrintWriter
+PrintWriter writer = new PrintWriter(socket.getOutputStream());
+3.寫入資料
+writer.println("message to send");
+writer.println("another message");
+
+撰寫伺服端
+伺服器應用程式對特定port建構出
+ServerSocket serverSocket = new ServerSocket(4242);
+用戶端對伺服器應用程式建構Socket連線
+Socket sock = new Socket("127.0.0.1",4242);
+伺服器建構出與用戶端通訊的新Socket
+Socket sock =serverSock.accept();
