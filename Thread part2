@@ -1,0 +1,95 @@
+p444
+執行緒的五個狀態
+1.新的(New):Thread實體被建立後且還沒呼叫它的start()之前
+2.可執行的(Runnable):執行緒有資格執行，但還沒被排程噐選出來執行
+3.執行中的(Running):執行緒被排程噐目前選為執行中的執行緒
+4.等待的(Waiting)或卡住的(Blocking)或睡著的(Sleeping):表示執行緒正在等待某些狀況
+5.死的(Dead):執行緒結束後的狀態
+
+可呼叫靜態函式Thread.sleep()暫停執行緒的執行
+try{
+  Thread.sleep(5*60*1000);//Sleep for 5 minutes
+  }catch(InterruptedException ex){}
+  
+
+執行緒的優先權
+JVM排程器
+1.挑一個執行緒出來執行，直到它被卡住或結束
+2.採用時間切片的方法，讓每個可執行的執行緒有相同的機會執行
+執行緒的預設優先權為5
+呼叫setPriority()函式直接設定優先權
+FooRunnable r = new FooRunnable();
+Thread t = new Thread(r);
+t.setPriority(8);
+t.start();
+
+
+yield()函式:讓目前執行中的執行緒回到可執行的狀態
+join()函式:讓一個執行緒等待另一個執行緒結束
+
+
+執行緒同步
+同步(Synchronize):多個執行緒按照指定的順序執行程式稱為同步
+因為執行緒是由作業系統決定何時執行，所以若不能利用同步安排執行順序，執行結果可能有多種答案
+例:
+package com.abc.java;
+
+public class constructor {
+	private int balance=50;
+	public int getBalance() {
+		return balance;
+	}
+	public void withdraw(int amount) {
+		balance = balance-amount;
+	}
+
+}
+
+
+
+package com.abc.java;
+
+public class AccountDanger implements Runnable {
+
+	private constructor acct =new constructor();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		AccountDanger r = new AccountDanger();
+		Thread one =new Thread(r);
+		Thread two =new Thread(r);
+		one.setName("morris");
+		two.setName("griz");
+		one.start();
+		two.start();
+
+	}
+    @Override
+	public void run() {
+		// TODO Auto-generated method stub
+    	for(int x=0;x<5;x++) {
+    		makeWithdrawal(10);
+    		if(acct.getBalance()<0) {
+    			System.out.println("account is overdrawn!");
+    		}
+    	}
+		
+	}
+    private synchronized void makeWithdrawal(int amt) {
+    	if(acct.getBalance()>=amt) {
+    		System.out.println(Thread.currentThread().getName()+"is going to withdraw!");
+    		try {
+    			Thread.sleep(500);
+    		}catch(InterruptedException ex) {}
+    		acct.withdraw(amt);
+    		System.out.println(Thread.currentThread().getName()+"completes the withdrawal");
+    	}else {
+    		System.out.println("Not enough in account for"+Thread.currentThread().getName()+" to withdraw"+acct.getBalance());
+    	}
+    }
+
+}
+
+
+wait():主程式等待執行緒通知[notify()]後繼續執行下去
+join()->執行緒一定要結束主程式才會啟動
+wait()不用
