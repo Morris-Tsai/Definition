@@ -1,0 +1,71 @@
+p494
+List所關心的是索引，他有一組和索引相關的函式。包含
+get(int index)、indexOf(Object o)、add(int index,order obj)
+List的三個實作
+1.ArrayList
+2.Vector
+3.LinkedList
+
+
+ArrayList
+1.可以長大的陣列
+2.快速迭代和快速的隨機存取的功能
+3.一個有順序的集合(藉由索引)，但不是有排序性
+Vector
+1.與ArrayList相同，但多了函式執行緒安全(thread-safe)
+LinkedList
+1.一個LinkedList根據索引位置來決定順序
+2.可快速加入、刪除。但迭代操作速度慢
+
+Arraylist比陣列好的特性
+1.他可以動態成長
+2.它可以提供功能更強大的插入和搜尋
+例:
+List mylist = new ArrayList();
+List<String> mylist = new ArrayList<String>();
+
+
+使用Lists有兩個Iterator的函式必須知道
+1.Boolean hasNext()假如在集合內，還有一個元素還沒被拜訪到，就會回傳true。
+  呼叫hasNext()不會將此Iterator實體指到集合內的下一個元素。
+2.Object next()這個函式回傳集合下一個物件，並且在回傳後，獎此Iterator實體指到集合內的下一個元素  
+  
+例:
+package com.abc.java;
+import java.util.*;
+public class Dog {
+	public String name;
+	Dog(String n){name=n;}
+}
+
+package com.abc.java;
+import java.util.*;
+public class ItTest {
+    public static void main(String[] args) {
+		List<Dog>d=new ArrayList<Dog>();
+		Dog dog = new Dog("aiko");
+		d.add(dog);
+		d.add(new Dog("clover"));
+		d.add(new Dog("magnolia"));
+		Iterator<Dog>i3=d.iterator();
+		while(i3.hasNext()) {
+			Dog d2 =(Dog)i3.next();
+			System.out.println(d2.name);
+		}
+		System.out.println("size"+d.size());
+		System.out.println("get1"+d.get(1).name);
+		System.out.println("aiko"+d.indexOf(dog));
+		d.remove(2);
+		Object[] oa = d.toArray();
+		for(Object o:oa) {
+			Dog d2 =(Dog)o;
+			System.out.println("oa"+d2.name);
+		}
+    }
+
+}
+
+如果我們宣告
+Iterator i3 = d.iterator();
+則我們必須對回傳值做轉型
+Dog d2 =(Dog)i3.next();
