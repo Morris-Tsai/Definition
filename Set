@@ -1,0 +1,15 @@
+P506
+必須具有唯一性，也就是物件不可以重複
+三個物件的實作
+1.HashSet
+2.LinkedHashSet
+3.TreeSet
+
+
+HashSet
+1.無排序性且無順序性的set
+LinkedHashSet
+1.有順序性的HashSet
+2.維持所有元素的雙向鏈結
+TreeSet
+1.有排序性的集合資料結構(另一個是TreeMap)
